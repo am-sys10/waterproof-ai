@@ -1,2 +1,6 @@
+click==8.1.8
+colorama==0.4.6
 git-filter-repo==2.47.0
+h11==0.14.0
 pygame==2.6.1
+uvicorn==0.34.0
