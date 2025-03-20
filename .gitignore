@@ -1,0 +1,15 @@
+# Python 仮想環境を無視
+venv/
+env/
+
+# PyCache ファイル
+__pycache__/
+
+# VSCode 設定
+.vscode/
+
+# 一時ファイル
+*.log
+*.sqlite3
+"credentials.json" 
+credentials.json 
