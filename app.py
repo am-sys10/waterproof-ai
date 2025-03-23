@@ -13,7 +13,7 @@ app = FastAPI()
 # CORS設定：React（localhost:3000）からのリクエストを許可
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[""http://localhost:3000""],  # 本番では制限した方が安全（例: ["http://localhost:3000"]）
+    allow_origins=["http://localhost:3000"],  # 本番では制限した方が安全（例: ["http://localhost:3000"]）
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
