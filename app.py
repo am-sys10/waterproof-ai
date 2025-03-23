@@ -161,3 +161,17 @@ def update_price(product_id: str, new_price: float, customer_id: str = None, sit
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+@app.get("/get_price_all")
+def get_price_all():
+    sheet = client.open_by_key(SHEET_ID).worksheet("商品マスタ")  # シート名に注意
+    records = sheet.get_all_records()
+    result = []
+
+    for row in records:
+        result.append({
+            "product_id": row["商品ID"],
+            "lowest_price": row["会社共通単価"]
+        })
+
+    return result
