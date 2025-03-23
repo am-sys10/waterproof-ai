@@ -164,14 +164,15 @@ def update_price(product_id: str, new_price: float, customer_id: str = None, sit
 
 @app.get("/get_price_all")
 def get_price_all():
-    sheet = client.open_by_key(SHEET_ID).worksheet("商品マスタ")  # シート名に注意
+    sheet = client.open_by_key(SHEET_ID).worksheet("products")  # ← 正しいシート名に変更
     records = sheet.get_all_records()
     result = []
 
     for row in records:
         result.append({
-            "product_id": row["商品ID"],
-            "lowest_price": row["会社共通単価"]
+            "product_id": row["product_id"],
+            "lowest_price": row["price"]
         })
 
     return result
+
