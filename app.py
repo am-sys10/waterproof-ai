@@ -5,7 +5,20 @@ from fastapi import FastAPI, HTTPException
 from oauth2client.service_account import ServiceAccountCredentials
 import gspread
 
+from fastapi.middleware.cors import CORSMiddleware
+
+
 app = FastAPI()
+
+# CORS設定：React（localhost:3000）からのリクエストを許可
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 本番では制限した方が安全（例: ["http://localhost:3000"]）
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 
 # 環境変数から credentials.json の内容を取得
 credentials_json = os.getenv("GOOGLE_CREDENTIALS")
