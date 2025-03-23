@@ -13,7 +13,7 @@ app = FastAPI()
 # CORS設定：React（localhost:3000）からのリクエストを許可
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # 本番では制限した方が安全（例: ["http://localhost:3000"]）
+    allow_origins=[""http://localhost:3000""],  # 本番では制限した方が安全（例: ["http://localhost:3000"]）
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -177,15 +177,15 @@ def update_price(product_id: str, new_price: float, customer_id: str = None, sit
 
 @app.get("/get_price_all")
 def get_price_all():
-    sheet = client.open_by_key(SHEET_ID).worksheet("products")  # ← 正しいシート名に変更
+    sheet = client.open_by_key(SHEET_ID).worksheet("products")
     records = sheet.get_all_records()
     result = []
 
     for row in records:
         result.append({
             "product_id": row["product_id"],
+            "product_name": row.get("product_name", ""),
             "lowest_price": row["price"]
         })
 
     return result
-
